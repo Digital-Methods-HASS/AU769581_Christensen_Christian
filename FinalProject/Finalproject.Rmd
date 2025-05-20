@@ -1,0 +1,124 @@
+---
+title: "Untitled"
+author: "Bo Hallum og Christian Sandgaard"
+date: "2025-04-28"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+# Activate tidyverse, gganimate, gifski, gapminder
+#install.packages("tidyverse")
+#install.packages("gganimate")
+#install.packages("gifski")
+#install.packages("gapminder")
+#install.packages("ggplot2")
+
+library(tidyverse)
+library(gganimate)
+library(gifski)
+library(gapminder)
+library(ggplot2)
+```
+
+```{r}
+udledning <- read_csv2("data/Udledning.csv")
+udledning <- udledning[1:4,]
+udledning
+```
+
+```{r}
+# 4. Tjek kolonnenavne – første kolonne skal hedde "Kategori"
+colnames(udledning)[1] <- "Kategori"
+
+# 5. Omform data til long format (fra bred -> lang)
+udledning_long <- pivot_longer(
+  udledning,
+  cols = -Kategori,
+  names_to = "Aar",
+  values_to = "Udledning"
+)
+
+# 6. Gør årstal og udledning numeriske
+udledning_long$Aar <- as.integer(udledning_long$Aar)
+udledning_long$Udledning <- as.numeric(udledning_long$Udledning)
+```
+
+
+```{r}
+ggplot(udledning_long, aes(x = Aar, y = Udledning, color=Kategori)) +
+  geom_line(size = 1.2) +
+  labs(
+    title = "Udledning af drivhusgasser pr. sektor (1990–2023)",
+    x = "År",
+    y = "Udledning (i ton)",
+    color = "Sektor"
+  ) +
+  theme_minimal()
+
+```
+
+
+
+```{r}
+anim <- ggplot(udledning_long, aes(x = Aar, y = Udledning, color = Kategori, group = Kategori)) +
+  geom_line(size = 1.2) +
+  geom_point(size = 2) +
+  labs(title = 'Udledning af drivhusgasser: {closest_state}',
+       x = 'År',
+       y = 'Udledning (i ton)',
+       color = 'Sektor') +
+  theme_minimal() +
+  transition_states(Aar, transition_length = 1, state_length = 1) +
+  ease_aes('linear')
+
+```
+
+```{r}
+
+# Brug transition_reveal til at tegne linjen over tid
+anim <- ggplot(udledning_long, aes(x = Aar, y = Udledning, color = Kategori, group = Kategori)) +
+  geom_line(size = 1.2) +
+  geom_point(size = 2) +
+  labs(
+    title = 'Udledning af drivhusgasser over tid',
+    subtitle = 'År: {frame_along}',
+    x = 'År',
+    y = 'Udledning (i ton)',
+    color = 'Sektor'
+  ) +
+  theme_minimal() +
+  transition_reveal(along = Aar)
+
+animate(anim, fps = 5, duration = 10, width = 800, height = 500, renderer = gifski_renderer())
+
+
+```
+
+```{r}
+anim2 <- ggplot(udledning_long, aes(x = Aar, y = Udledning, color = Kategori, group = Kategori)) +
+  geom_line(size = 1.2) +
+  geom_point(size = 2) +
+  geom_vline(xintercept = 2005, linetype = "dashed", color = "black", size = 1) +  # Lodret linje
+  annotate("text", x = 2005, y = max(udledning_long$Udledning, na.rm = TRUE), 
+           label = "Kyoto", angle = 90, vjust = -0.5, size = 4, fontface = "italic") +
+  
+  geom_vline(xintercept = 2016, linetype = "dashed", color = "black", size = 1) +  # Lodret linje
+  annotate("text", x = 2016, y = max(udledning_long$Udledning, na.rm = TRUE), 
+           label = "Paris", angle = 90, vjust = -0.5, size = 4, fontface = "italic") +
+  
+  geom_vline(xintercept = 1994, linetype = "dashed", color = "black", size = 1) +  # Lodret linje
+  annotate("text", x = 1994, y = max(udledning_long$Udledning, na.rm = TRUE), 
+           label = "UNFCCC", angle = 90, vjust = -0.5, size = 4, fontface = "italic") +
+  labs(
+    title = 'Udledning af drivhusgasser over tid', 
+    subtitle = 'År: {frame_along}',
+    x = 'År',
+    y = 'Udledning (i ton)',
+    color = 'Sektor'
+  ) +
+  theme_minimal()+
+  transition_reveal(along = Aar)
+
+animate(anim2, fps = 5, duration = 10, width = 800, height = 500, renderer = gifski_renderer())
+
+```
