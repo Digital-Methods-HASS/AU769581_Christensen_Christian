@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Bo Hallum og Christian Sandgaard" />
+
+<meta name="date" content="2025-04-28" />
+
+<title>Udledning</title>
+
+<script src="Finalproject_files/header-attrs-2.29/header-attrs.js"></script>
+<script src="Finalproject_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="Finalproject_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="Finalproject_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="Finalproject_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="Finalproject_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="Finalproject_files/navigation-1.1/tabsets.js"></script>
+<link href="Finalproject_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="Finalproject_files/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Udledning</h1>
+<h4 class="author">Bo Hallum og Christian Sandgaard</h4>
+<h4 class="date">2025-04-28</h4>
+
+</div>
+
+
+<pre class="r"><code>udledning &lt;- read_csv2(&quot;data/Udledning.csv&quot;)</code></pre>
+<pre><code>## ℹ Using &quot;&#39;,&#39;&quot; as decimal and &quot;&#39;.&#39;&quot; as grouping mark. Use `read_delim()` for more control.</code></pre>
+<pre><code>## Rows: 6 Columns: 35
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;;&quot;
+## chr  (1): Aarstal
+## dbl (34): 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, ...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code>udledning &lt;- udledning[1:4,]
+udledning</code></pre>
+<pre><code>## # A tibble: 4 × 35
+##   Aarstal  `1990` `1991` `1992` `1993` `1994` `1995` `1996` `1997` `1998` `1999`
+##   &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Landbru…  16339  16334  16088  16047  15892  15991  15641  15526  15488  15118
+## 2 Industri   8275   8812   8909   8898   9062   9868   9936   9521   9329   9376
+## 3 Forsyni…  27687  36578  31289  32842  36997  33274  45748  36564  32970  29749
+## 4 Oevrige…  11087  11697  11528  11787  11872  11635  12276  13011  12604  13197
+## # ℹ 24 more variables: `2000` &lt;dbl&gt;, `2001` &lt;dbl&gt;, `2002` &lt;dbl&gt;, `2003` &lt;dbl&gt;,
+## #   `2004` &lt;dbl&gt;, `2005` &lt;dbl&gt;, `2006` &lt;dbl&gt;, `2007` &lt;dbl&gt;, `2008` &lt;dbl&gt;,
+## #   `2009` &lt;dbl&gt;, `2010` &lt;dbl&gt;, `2011` &lt;dbl&gt;, `2012` &lt;dbl&gt;, `2013` &lt;dbl&gt;,
+## #   `2014` &lt;dbl&gt;, `2015` &lt;dbl&gt;, `2016` &lt;dbl&gt;, `2017` &lt;dbl&gt;, `2018` &lt;dbl&gt;,
+## #   `2019` &lt;dbl&gt;, `2020` &lt;dbl&gt;, `2021` &lt;dbl&gt;, `2022` &lt;dbl&gt;, `2023` &lt;dbl&gt;</code></pre>
+<pre class="r"><code># 4. Tjek kolonnenavne – første kolonne skal hedde &quot;Kategori&quot;
+colnames(udledning)[1] &lt;- &quot;Kategori&quot;
+
+# 5. Omform data til long format (fra bred -&gt; lang)
+udledning_long &lt;- pivot_longer(
+  udledning,
+  cols = -Kategori,
+  names_to = &quot;Aar&quot;,
+  values_to = &quot;Udledning&quot;
+)
+
+# 6. Gør årstal og udledning numeriske
+udledning_long$Aar &lt;- as.integer(udledning_long$Aar)
+udledning_long$Udledning &lt;- as.numeric(udledning_long$Udledning)</code></pre>
+<pre class="r"><code>ggplot(udledning_long, aes(x = Aar, y = Udledning, color=Kategori)) +
+  geom_line(size = 1.2) +
+  labs(
+   title = &#39;Greenhouse gas emission over time&#39;,
+    x = &#39;Years&#39;,
+    y = &#39;Emission (in ton)&#39;,
+    color = &#39;Industries&#39;
+  ) +
+  theme_minimal()</code></pre>
+<pre><code>## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<p><img src="Finalproject_files/figure-html/kurvediagram-1.png" width="672" /></p>
+<pre class="r"><code>anim &lt;- ggplot(udledning_long, aes(x = Aar, y = Udledning, color = Kategori, group = Kategori)) +
+  geom_line(size = 1.2) +
+  geom_point(size = 2) +
+  labs(title = &#39;Udledning af drivhusgasser: {closest_state}&#39;,
+       x = &#39;År&#39;,
+       y = &#39;Udledning (i ton)&#39;,
+       color = &#39;Sektor&#39;) +
+  theme_minimal() +
+  transition_states(Aar, transition_length = 1, state_length = 1) +
+  ease_aes(&#39;linear&#39;)</code></pre>
+<pre class="r"><code># Brug transition_reveal til at tegne linjen over tid
+anim &lt;- ggplot(udledning_long, aes(x = Aar, y = Udledning, color = Kategori, group = Kategori)) +
+  geom_line(size = 1.2) +
+  geom_point(size = 2) +
+  labs(
+    title = &#39;Greenhouse gas emission over time&#39;,
+    subtitle = &#39;year: {frame_along}&#39;,
+    x = &#39;Years&#39;,
+    y = &#39;Emission (in ton)&#39;,
+    color = &#39;Industries&#39;
+  ) +
+  theme_minimal() +
+  transition_reveal(along = Aar)
+
+#animate(anim, fps = 5, duration = 10, width = 800, height = 500, renderer = gifski_renderer())</code></pre>
+<pre class="r"><code>anim2 &lt;- ggplot(udledning_long, aes(x = Aar, y = Udledning, color = Kategori, group = Kategori)) +
+  geom_line(size = 2) +
+  geom_point(size = 3) +
+  geom_vline(xintercept = 2005, linetype = &quot;dashed&quot;, color = &quot;black&quot;, size = 1) +  # Lodret linje
+  annotate(&quot;text&quot;, x = 2005, y = max(udledning_long$Udledning, na.rm = TRUE), 
+           label = &quot;Kyoto&quot;, angle = 90, vjust = -0.5, size = 4, fontface = &quot;italic&quot;) +
+  
+  geom_vline(xintercept = 2016, linetype = &quot;dashed&quot;, color = &quot;black&quot;, size = 1) +  # Lodret linje
+  annotate(&quot;text&quot;, x = 2016, y = max(udledning_long$Udledning, na.rm = TRUE), 
+           label = &quot;Paris&quot;, angle = 0, vjust = 3, size = 4, fontface = &quot;italic&quot;) +
+  
+  geom_vline(xintercept = 1994, linetype = &quot;dashed&quot;, color = &quot;black&quot;, size = 1) +  # Lodret linje
+  annotate(&quot;text&quot;, x = 1994, y = max(udledning_long$Udledning, na.rm = TRUE), 
+           label = &quot;UNFCCC&quot;, angle = 90, vjust = -0.5, size = 4, fontface = &quot;italic&quot;) +
+  
+  geom_vline(xintercept = 1990, linetype = &quot;dashed&quot;, color = &quot;pink&quot;, size = 1) +  # Lodret linje
+  annotate(&quot;text&quot;, x = 1990, y = max(udledning_long$Udledning, na.rm = TRUE), 
+           label = &quot;Energi 2000&quot;, angle = 0, vjust = -0.5, size = 4, fontface = &quot;italic&quot;) +
+  geom_vline(xintercept = 2018, linetype = &quot;dashed&quot;, color = &quot;pink&quot;, size = 1) +  # Lodret linje
+  annotate(&quot;text&quot;, x = 2018, y = max(udledning_long$Udledning, na.rm = TRUE), 
+           label = &quot;Energiaftale 2018&quot;, angle = 0, vjust = -0.5, size = 4, fontface = &quot;italic&quot;) +
+  
+  labs(
+    title = &#39;Greenhouse gas emission over time&#39;,
+    subtitle = &#39;year: {frame_along}&#39;,
+    x = &#39;Years&#39;,
+    y = &#39;Emission (in ton)&#39;,
+    color = &#39;Industries&#39;
+  ) +
+  theme_minimal()+
+  transition_reveal(along = Aar)
+
+#animate(anim2, fps = 5, duration = 10, width = 800, height = 500, renderer = gifski_renderer())</code></pre>
+<pre class="r"><code>#anim_obj &lt;- animate(anim2, fps = 5, duration = 10, width = 800, height = 500, renderer = gifski_renderer())
+#anim_save(&quot;udledning.gif&quot;, animation = anim_obj)</code></pre>
+<div id="animation-af-udledning" class="section level3">
+<h3>Animation af udledning</h3>
+<p><img src="udledning.gif" /></p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
